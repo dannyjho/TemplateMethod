@@ -1,8 +1,10 @@
-package org.card.poker;
+package org.card.showdown;
+
+import org.card.Player;
 
 import java.util.Random;
 
-public class AIPlayer extends Player {
+public class AIPlayer extends PokerPlayer {
     private static int aiCounter = 1;
 
 

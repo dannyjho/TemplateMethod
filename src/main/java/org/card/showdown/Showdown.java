@@ -1,4 +1,6 @@
-package org.card.poker;
+package org.card.showdown;
+
+import org.card.Player;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -6,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 
 public class Showdown {
-    private final List<Player> players;
+    private final List<PokerPlayer> players;
     private final HashMap<Player, Integer> scores;
     private int currentRound;
 
-    public Showdown(List<Player> players) {
+    public Showdown(List<PokerPlayer> players) {
         currentRound = 1;
         this.players = players;
 
@@ -19,14 +21,18 @@ public class Showdown {
         players.forEach(player -> scores.put(player, 0));
     }
 
-    private static void initialDeck(List<Player> players) {
+    private static void initialDeck(List<PokerPlayer> players) {
         // 產生一副新牌
         Deck deck = new Deck();
         // 洗牌
         deck.shuffle();
         // 發牌
+        deal(players, deck);
+    }
+
+    private static void deal(List<PokerPlayer> players, Deck deck) {
         for (int i = 0; i < 13; i++) {
-            for (Player player : players) {
+            for (PokerPlayer player : players) {
                 player.addHand(deck.drawCard());
             }
         }
@@ -46,8 +52,8 @@ public class Showdown {
         System.out.println("第 " + currentRound + " 局開始");
         // 開始 13 局遊戲
         // 收集每位玩家出的牌
-        Map<Player, PokerCard> roundCards = new LinkedHashMap<>();
-        for (Player player : players) {
+        Map<PokerPlayer, PokerCard> roundCards = new LinkedHashMap<>();
+        for (PokerPlayer player : players) {
             System.out.println("\n輪到" + player.getName() + "了");
             PokerCard playedCard = player.playTurn();
             roundCards.put(player, playedCard);
@@ -57,7 +63,7 @@ public class Showdown {
         // 找出最大的牌和對應的玩家
         Player roundWinner = null;
         PokerCard maxCard = null;
-        for (Map.Entry<Player, PokerCard> entry : roundCards.entrySet()) {
+        for (Map.Entry<PokerPlayer, PokerCard> entry : roundCards.entrySet()) {
             if (maxCard == null || entry.getValue().compareTo(maxCard) > 0) {
                 maxCard = entry.getValue();
                 roundWinner = entry.getKey();

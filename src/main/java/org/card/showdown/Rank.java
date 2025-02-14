@@ -1,4 +1,4 @@
-package org.card.poker;
+package org.card.showdown;
 
 public enum Rank {
     ACE("A", 1),

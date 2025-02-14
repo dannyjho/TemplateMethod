@@ -1,4 +1,4 @@
-package org.card.poker;
+package org.card.showdown;
 
 public class PokerCard implements Comparable<PokerCard> {
     private final Suit suit;

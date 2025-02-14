@@ -1,4 +1,4 @@
-package org.card.poker;
+package org.card.showdown;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,9 +30,5 @@ public class Deck {
             throw new IllegalStateException("Deck is empty");
         }
         return cards.remove(cards.size() - 1);
-    }
-
-    public int remainingCards() {
-        return cards.size();
     }
 }

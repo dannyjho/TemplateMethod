@@ -1,4 +1,6 @@
-package org.card.poker;
+package org.card;
+
+import org.card.showdown.PokerCard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +15,6 @@ public abstract class Player {
         this.hand = new ArrayList<>();
     }
 
-    public void addHand(PokerCard pokerCard) {
-        hand.add(pokerCard);
-    }
-
-    public abstract PokerCard playTurn();
 
     public String getName() {
         return name;

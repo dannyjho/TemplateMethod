@@ -1,4 +1,4 @@
-package org.card.poker;
+package org.card.showdown;
 
 public enum Suit {
     CLUBS("♣",1),

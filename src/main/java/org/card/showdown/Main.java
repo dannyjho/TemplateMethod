@@ -1,11 +1,12 @@
-package org.card.poker;
+package org.card.showdown;
+
+import org.card.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numOfHumanPlayer;
@@ -19,7 +20,7 @@ public class Main {
             }
         }
 
-        List<Player> players = new ArrayList<>();
+        List<PokerPlayer> players = new ArrayList<>();
         for (int i = 1; i < numOfHumanPlayer + 1; i++) {
             System.out.print("請輸入玩家" + i + "的姓名:");
             String name = scanner.next();

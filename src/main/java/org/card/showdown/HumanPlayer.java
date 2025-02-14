@@ -1,8 +1,8 @@
-package org.card.poker;
+package org.card.showdown;
 
 import java.util.Scanner;
 
-public class HumanPlayer extends Player {
+public class HumanPlayer extends PokerPlayer {
 
     Scanner scanner = new Scanner(System.in);
 
