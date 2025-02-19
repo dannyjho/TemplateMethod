@@ -8,7 +8,7 @@ public class AIPlayer extends PokerPlayer {
     private static int aiCounter = 1;
 
 
-    protected AIPlayer() {
+    public AIPlayer() {
         super(generateAIName());
     }
 

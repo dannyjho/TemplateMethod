@@ -1,9 +1,11 @@
 package org.card.uno;
 
+import org.card.CardGame;
+
 import java.util.List;
 import java.util.Objects;
 
-public class Uno {
+public class Uno extends CardGame {
 
     List<UnoPlayer> players;
     UnoCard currentCard;

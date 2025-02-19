@@ -1,5 +1,6 @@
 package org.card.showdown;
 
+import org.card.CardGame;
 import org.card.Player;
 
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Showdown {
+public class Showdown extends CardGame {
     private final List<PokerPlayer> players;
     private final HashMap<Player, Integer> scores;
     private int currentRound;
