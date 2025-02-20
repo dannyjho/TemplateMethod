@@ -25,5 +25,7 @@ public abstract class UnoPlayer extends Player {
         hand.remove(playerChooseCard);
     }
 
-    ;
+    public List<UnoCard> getHand() {
+        return hand;
+    }
 }

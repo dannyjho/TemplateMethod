@@ -56,7 +56,7 @@ public class Main {
     private static void playGame(CardGame game) {
         try {
             // 使用樣板方法啟動遊戲
-            game.play();
+            game.playGame();
 
             // 遊戲結束後的處理
             System.out.println("\n遊戲已結束，按 Enter 返回主選單...");

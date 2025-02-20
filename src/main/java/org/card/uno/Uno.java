@@ -1,6 +1,7 @@
 package org.card.uno;
 
 import org.card.CardGame;
+import org.card.Player;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,30 +11,53 @@ public class Uno extends CardGame {
     List<UnoPlayer> players;
     UnoCard currentCard;
     private UnoDeck unoDeck;
+    private Player winner;
 
     public Uno(List<UnoPlayer> players) {
         this.players = players;
     }
 
+    @Override
+    protected void initialDeck() {
+        unoDeck = new UnoDeck();
+
+        unoDeck.shuffle();
+    }
+
+    @Override
+    protected void deal() {
+        for (int i = 0; i < 5; i++) {
+            for (UnoPlayer player : players) {
+                player.addHand(unoDeck.draw());
+            }
+        }
+        // 翻開第一張牌
+        currentCard = unoDeck.showFirstCard();
+    }
+
+    @Override
     public void play() {
-        initialDeck(players);
+        boolean gameOver = false;
 
-        boolean gameOver = true;
-
-        while (gameOver) {
+        while (!gameOver) {
             for (UnoPlayer player : players) {
                 System.out.println("輪到" + player.getName());
                 System.out.println("最上面的牌爲: " + currentCard.toString());
 
                 processPlayerTurn(player);
 
-                if (player.hand.isEmpty()) {
-                    System.out.println("玩家" + player.getName() + "獲勝");
-                    gameOver = false;
+                if (player.getHand().isEmpty()) {
+                    winner = player;
+                    gameOver = true;
                     break;
                 }
             }
         }
+    }
+
+    @Override
+    protected void announceWinner() {
+        System.out.println("玩家" + winner.getName() + "獲勝");
     }
 
     private void processPlayerTurn(UnoPlayer player) {
@@ -59,25 +83,7 @@ public class Uno extends CardGame {
     }
 
     private boolean isValidPlay(UnoCard playerChooseCard) {
-        return Objects.equals(playerChooseCard.getColor(), currentCard.getColor()) || playerChooseCard.getValue() == currentCard.getValue();
-    }
-
-    private void initialDeck(List<UnoPlayer> players) {
-        unoDeck = new UnoDeck();
-
-        unoDeck.shuffle();
-
-        deal(players, unoDeck);
-
-        // 翻開第一張牌
-        currentCard = unoDeck.showFirstCard();
-    }
-
-    private void deal(List<UnoPlayer> players, UnoDeck unoDeck) {
-        for (int i = 0; i < 5; i++) {
-            for (UnoPlayer player : players) {
-                player.addHand(unoDeck.draw());
-            }
-        }
+        return Objects.equals(playerChooseCard.getColor(), currentCard.getColor())
+                || playerChooseCard.getValue() == currentCard.getValue();
     }
 }
